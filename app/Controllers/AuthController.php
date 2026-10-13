@@ -26,12 +26,14 @@ class AuthController extends BaseController
         }
 
         $userModel = new UserModel();
+        $esPrimero = $userModel->countAllResults() == 0;
+
         $userModel->insert([
             'name'     => $this->request->getPost('name'),
             'email'    => $this->request->getPost('email'),
             'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
-            'active'   => 1,   
-            'is_admin' => 0,
+            'active'   => 1,
+            'is_admin' => $esPrimero ? 1 : 0,
         ]);
 
         return redirect()->to('/login')->with('success', 'Registro exitoso. Ya puedes iniciar sesión.');

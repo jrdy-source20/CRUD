@@ -1,41 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Usuarios</title>
-</head>
-<body>
+<?= $this->extend('layout') ?>
 
-    <h1>Lista de usuarios</h1>
+<?= $this->section('content') ?>
+    <h1>Usuarios</h1>
+    <p><a href="<?= site_url('users/new') ?>">+ Nuevo usuario</a></p>
 
-    <?php if (empty($users)): ?>
-
-        <p>No hay usuarios registrados.</p>
-
-    <?php else: ?>
-
-        <?php foreach ($users as $user): ?>
-
-            <div>
-                <strong>ID:</strong>
-                <?= esc($user['id']) ?>
-
-                <br>
-
-                <strong>Nombre:</strong>
-                <?= esc($user['name']) ?>
-
-                <br>
-
-                <strong>Email:</strong>
-                <?= esc($user['email']) ?>
-
-                <hr>
-            </div>
-
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Activo</th>
+            <th>Administrador</th>
+            <th>Creado</th>
+            <th>Acciones</th>
+        </tr>
+        <?php foreach ($users as $u): ?>
+            <tr>
+                <td><?= esc($u['name']) ?></td>
+                <td><?= esc($u['email']) ?></td>
+                <td><?= $u['active'] ? 'Sí' : 'No' ?></td>
+                <td><?= $u['is_admin'] ? 'Sí' : 'No' ?></td>
+                <td><?= esc($u['created_at']) ?></td>
+                <td>
+                    <a href="<?= site_url('users/' . $u['id']) ?>">Ver</a> |
+                    <a href="<?= site_url('users/edit/' . $u['id']) ?>">Editar</a> |
+                    <a href="<?= site_url('users/delete/' . $u['id']) ?>" onclick="return confirm('¿Eliminar usuario?')">Eliminar</a>
+                </td>
+            </tr>
         <?php endforeach; ?>
+    </table>
 
-    <?php endif; ?>
-
-</body>
-</html>
+    <?= $pager->links() ?>
+<?= $this->endSection() ?>

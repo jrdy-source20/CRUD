@@ -18,3 +18,7 @@ $routes->post('users/create', 'UserController::create');
 $routes->get('tasks/edit/(:num)', 'TaskController::edit/$1');
 $routes->post('tasks/update/(:num)', 'TaskController::update/$1');
 $routes->get('tasks/delete/(:num)', 'TaskController::delete/$1');
+$routes->get('users/(:num)', 'UserController::show/$1');
+$routes->get('users/edit/(:num)', 'UserController::edit/$1');
+$routes->post('users/update/(:num)', 'UserController::update/$1');
+$routes->get('users/delete/(:num)', 'UserController::delete/$1');
