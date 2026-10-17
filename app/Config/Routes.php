@@ -3,22 +3,40 @@
 use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
+
 $routes->get('/', 'Home::index');
+
 $routes->get('signup', 'AuthController::signup');
 $routes->post('signup', 'AuthController::register');
 $routes->get('login', 'AuthController::login');
 $routes->post('login', 'AuthController::attempt');
 $routes->get('logout', 'AuthController::logout');
+
 $routes->get('tasks', 'TaskController::index');
 $routes->get('tasks/new', 'TaskController::new');
 $routes->post('tasks/create', 'TaskController::create');
+
 $routes->get('users', 'UserController::index');
 $routes->get('users/new', 'UserController::new');
 $routes->post('users/create', 'UserController::create');
+
 $routes->get('tasks/edit/(:num)', 'TaskController::edit/$1');
 $routes->post('tasks/update/(:num)', 'TaskController::update/$1');
 $routes->get('tasks/delete/(:num)', 'TaskController::delete/$1');
+
 $routes->get('users/(:num)', 'UserController::show/$1');
 $routes->get('users/edit/(:num)', 'UserController::edit/$1');
 $routes->post('users/update/(:num)', 'UserController::update/$1');
 $routes->get('users/delete/(:num)', 'UserController::delete/$1');
+
+$routes->get('profile', 'ProfileController::index');
+$routes->get('profile/confirm', 'ProfileController::confirm');
+$routes->post('profile/confirm', 'ProfileController::checkPassword');
+$routes->get('profile/edit', 'ProfileController::edit');
+$routes->post('profile/update', 'ProfileController::update');
+$routes->get('profile/password', 'ProfileController::password');
+$routes->post('profile/password', 'ProfileController::updatePassword');
+$routes->get('profile/image', 'ProfileController::image');
+$routes->post('profile/image', 'ProfileController::saveImage');
+$routes->get('profile/image/delete', 'ProfileController::confirmDelete');
+$routes->post('profile/image/delete', 'ProfileController::deleteImage');

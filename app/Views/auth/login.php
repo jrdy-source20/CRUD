@@ -1,13 +1,28 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('content') ?>
-    <h1>Iniciar sesión</h1>
-    <form action="<?= site_url('login') ?>" method="post">
-        <?= csrf_field() ?>
-        <label>Correo</label><br>
-        <input type="email" name="email" value="<?= esc(old('email')) ?>"><br><br>
-        <label>Contraseña</label><br>
-        <input type="password" name="password"><br><br>
-        <button type="submit">Iniciar sesión</button>
-    </form>
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h3 mb-4 text-center">Iniciar sesión</h1>
+                <form action="<?= site_url('login') ?>" method="post">
+                    <?= csrf_field() ?>
+                    <div class="mb-3">
+                        <label class="form-label">Correo</label>
+                        <input type="email" name="email" class="form-control" value="<?= esc(old('email')) ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+                </form>
+                <p class="text-center mt-3 mb-0">
+                    ¿No tienes cuenta? <a href="<?= site_url('signup') ?>">Regístrate</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <?= $this->endSection() ?>
